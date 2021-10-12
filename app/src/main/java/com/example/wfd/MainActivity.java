@@ -23,6 +23,17 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
 
 
+    //TODO: Database Socket
+        //TODO: Connection Class
+        //TODO: Query Class
+        //TODO: Push Update Class
+    //TODO: GUI
+        //TODO: Ingredients Page
+        //TODO: Recipe Page
+        //TODO: Shopping List
+    //TODO: Pop-up Tutorial
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
