@@ -16,11 +16,13 @@ import android.view.View;
 import com.example.wfd.ui.main.SectionsPagerAdapter;
 import com.example.wfd.databinding.ActivityMainBinding;
 
+import io.realm.Realm;
+
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,5 +44,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        Realm.init(this);
     }
 }

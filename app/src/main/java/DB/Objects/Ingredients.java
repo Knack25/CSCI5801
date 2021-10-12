@@ -8,6 +8,10 @@ public class Ingredients extends RealmObject {
     private double ammount;
     private String ammount_type;
 
+    public Ingredients(){
+
+    }
+
     public Ingredients(String name, int upc,double ammount,String ammount_type){
         this.name = name;
         this.upc = upc;
