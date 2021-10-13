@@ -9,6 +9,7 @@ import com.google.android.material.tabs.TabLayout;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,11 +17,18 @@ import android.view.View;
 import com.example.wfd.ui.main.SectionsPagerAdapter;
 import com.example.wfd.databinding.ActivityMainBinding;
 
+import DB.Socket;
 import io.realm.Realm;
+import io.realm.mongodb.App;
+import io.realm.mongodb.AppConfiguration;
+import io.realm.mongodb.Credentials;
+import io.realm.mongodb.User;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+
+
 
 
     //TODO: Database Socket
@@ -57,5 +65,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Realm.init(this);
+
+        /*Uncomment this when you are ready to connect to the database. This is to remove
+        * any unnecessary requests.*/
+       // Socket.init();
     }
 }
