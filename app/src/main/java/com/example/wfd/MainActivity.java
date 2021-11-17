@@ -4,6 +4,8 @@ package com.example.wfd;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -35,25 +37,22 @@ public class MainActivity extends AppCompatActivity {
     private static final AtomicBoolean success = new AtomicBoolean(false);
     private static Ingredient testingredient;
 
-
-
-
+    private static final String TAG = "WFD";
 
 
     //TODO: Database Socket
-        //TODO: Connection Class
-        //TODO: Query Class
-        //TODO: Push Update Class
+    //TODO: Connection Class
+    //TODO: Query Class
+    //TODO: Push Update Class
     //TODO: GUI
-        //TODO: Ingredients Page
-        //TODO: Recipe Page
-        //TODO: Shopping List
+    //TODO: Ingredients Page
+    //TODO: Recipe Page
+    //TODO: Shopping List
     //TODO: Pop-up Tutorial
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
 
 
         super.onCreate(savedInstanceState);
@@ -72,20 +71,20 @@ public class MainActivity extends AppCompatActivity {
                 "nathangschneider@gmail.com", "Test123");
 
 
-        app.loginAsync(emailPasswordCredientals,it -> {
-            if(it.isSuccess()){
-                Log.v("AUTH","Successfully authenticated using an email and password");
-                Log.v("AUTH","Logged in user ID: " + app.currentUser().getId());
+        app.loginAsync(emailPasswordCredientals, it -> {
+            if (it.isSuccess()) {
+                Log.v("AUTH", "Successfully authenticated using an email and password");
+                Log.v("AUTH", "Logged in user ID: " + app.currentUser().getId());
                 user.set(app.currentUser());
-                Log.d("DEBUG","User ID " + user.get().getId());
+                Log.d("DEBUG", "User ID " + user.get().getId());
                 success.set(true);
             } else {
-                Log.e("AUTH" , it.getError().toString());
+                Log.e("AUTH", it.getError().toString());
                 success.set(false);
             }
         });
 
-        if(!success.get()){
+        if (!success.get()) {
             //TODO:  Redirect to login page
         }
 
@@ -111,12 +110,90 @@ public class MainActivity extends AppCompatActivity {
 
                 RealmResults<Ingredient> ingredients = realm.where(Ingredient.class).findAll();
 
-                Log.d("DEBUG",ingredients.toString());
+                Log.d("DEBUG", ingredients.toString());
                 realm.close();
                 success.set(true);
             }
         });
 
+        //Wire up the Recipes button to do stuff
+        //..get the Recipes button
+        Button btnRecipes = findViewById(R.id.btnRecipes);
+        //..set what happens when the user clicks on Recipes - will do more things when things are coded
+        btnRecipes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "This shows Recipes.");
+                Toast.makeText(getApplicationContext(), "Recipes", Toast.LENGTH_SHORT)
+                        .show();
+            }
+        });
+
+
+        //Wire up the My Pantry button to do stuff
+        //..get the My Pantry button
+        Button btnPantry = findViewById(R.id.btnPantry);
+        //..set what happens when the user clicks on My Pantry - will do more things when things are coded
+        btnRecipes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "This shows My Pantry.");
+                Toast.makeText(getApplicationContext(), "My Pantry", Toast.LENGTH_SHORT)
+                        .show();
+            }
+        });
+
+        //Wire up the Shopping List button to do stuff
+        //..get the Shopping List button
+        Button btnShoppingList = findViewById(R.id.btnShoppingList);
+        //..set what happens when the user clicks on Shopping List - will do more things when things are coded
+        btnRecipes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "This shows the Shopping List.");
+                Toast.makeText(getApplicationContext(), "Shopping List", Toast.LENGTH_SHORT)
+                        .show();
+            }
+        });
+
+        //Wire up the My Account button to do stuff
+        //..get the My Account button
+        Button btnMyAccount = findViewById(R.id.btnMyAccount);
+        //..set what happens when the user clicks on My Account - will do more things when things are coded
+        btnRecipes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "This shows My Account.");
+                Toast.makeText(getApplicationContext(), "My Account", Toast.LENGTH_SHORT)
+                        .show();
+            }
+        });
+
+        //Wire up the Tutorial button to do stuff
+        //..get the Tutorial button
+        Button btnTutorial = findViewById(R.id.btnTutorial);
+        //..set what happens when the user clicks on the Tutorial - will do more things when things are coded
+        btnRecipes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "This shows the Tutorial.");
+                Toast.makeText(getApplicationContext(), "Tutorial", Toast.LENGTH_SHORT)
+                        .show();
+            }
+        });
+
+        //Wire up the Camera button to do stuff
+        //..get the Camera button
+        Button btnCamera = findViewById(R.id.btnCamera);
+        //..set what happens when the user clicks on the Camera - will do more things when things are coded
+        btnRecipes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "This shows the Camera.");
+                Toast.makeText(getApplicationContext(), "Camera", Toast.LENGTH_SHORT)
+                        .show();
+            }
+        });
 
     }
 }
