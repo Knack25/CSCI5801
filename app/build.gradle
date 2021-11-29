@@ -40,6 +40,8 @@ dependencies {
 
     //MLKit
     implementation 'com.google.mlkit:barcode-scanning:17.0.0'
+    implementation 'androidx.navigation:navigation-fragment:2.3.5'
+    implementation 'androidx.navigation:navigation-ui:2.3.5'
 
     // CameraX
     def camerax_version = "1.0.0-rc05"
