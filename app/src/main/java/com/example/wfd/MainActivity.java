@@ -1,53 +1,23 @@
 package com.example.wfd;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.tabs.TabLayout;
-
-import androidx.annotation.NonNull;
-import androidx.camera.core.AspectRatio;
-import androidx.camera.core.Camera;
-import androidx.camera.core.CameraSelector;
-import androidx.camera.core.ImageAnalysis;
-import androidx.camera.core.Preview;
-import androidx.camera.lifecycle.ProcessCameraProvider;
-import androidx.camera.view.PreviewView;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.MutableLiveData;
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.SystemClock;
 import android.util.Log;
-import android.util.Size;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.wfd.ui.main.SectionsPagerAdapter;
-import com.example.wfd.databinding.ActivityMainBinding;
-import com.google.common.util.concurrent.ListenableFuture;
-import com.google.mlkit.vision.common.InputImage;
+import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Locale;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
+
+import com.example.wfd.ui.main.SectionsPagerAdapter;
+
+import org.bson.types.ObjectId;
+
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
 import DB.Objects.Ingredient;
-import DB.Socket;
 import io.realm.Realm;
 import io.realm.RealmResults;
 import io.realm.mongodb.App;
@@ -83,11 +53,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
 
-
-        com.example.wfd.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
 
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
 
@@ -130,36 +98,34 @@ public class MainActivity extends AppCompatActivity {
                         "Successfully opened a realm with reads and writes allowed on the UI thread."
                 );
 
-//                testingredient = new Ingredient("Flour", 1345546754,10,
-//                        "lbs",app.currentUser().getId());
+               realm.executeTransaction(r -> {
+                   Ingredient testingredient = r.createObject(Ingredient.class,new ObjectId());
+                   testingredient.setName("Flour");
+                   testingredient.setUpc(1345546754);
+                   testingredient.setAmmount(10);
+                   testingredient.setAmmount_type("lbs");
+                    r.insert(testingredient);
+                });
 
-//                realm.executeTransaction(r -> {
-//                    r.insert(testingredient);
-//                });
+                RealmResults<Ingredient> ingredients = realm.where(Ingredient.class).findAll();
 
-               // RealmResults<Ingredient> ingredients = realm.where(Ingredient.class).findAll();
-
-              //  Log.d("DEBUG", ingredients.toString());
+                Log.d("DEBUG", ingredients.toString());
                 realm.close();
                 success.set(true);
             }
         });
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+
 
 
         //Wire up the Recipes button to do stuff
         //..get the Recipes button
-        Button btnRecipes = findViewById(R.id.btnRecipes);
+        Button btnRecipes = (Button) findViewById(R.id.btnRecipes);
         //..set what happens when the user clicks on Recipes - will do more things when things are coded
-        btnRecipes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i(TAG, "This shows Recipes.");
-                Toast.makeText(getApplicationContext(), "Recipes", Toast.LENGTH_SHORT)
-                        .show();
-            }
+        btnRecipes.setOnClickListener(view -> {
+            Log.i(TAG, "This shows Recipes.");
+            Toast.makeText(getApplicationContext(), "Recipes", Toast.LENGTH_SHORT)
+                    .show();
         });
 
 

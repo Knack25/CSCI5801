@@ -1,10 +1,8 @@
 package com.example.wfd;
 
 import android.content.Intent;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.camera.view.PreviewView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
