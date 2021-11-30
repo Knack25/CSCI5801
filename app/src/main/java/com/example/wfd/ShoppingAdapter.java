@@ -62,6 +62,9 @@ public class ShoppingAdapter extends BaseAdapter implements ListAdapter {
             view = inflater.inflate(R.layout.pantry_list_item_layout, null);
         }
 
+        //need to figure out what ingredients the user needs to buy
+
+
         //Handle TextView
         TextView recipeText = (TextView)view.findViewById(R.id.recipeText);
       //  recipeText.setText(list.get(position).getName());
