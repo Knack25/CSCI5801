@@ -7,43 +7,47 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
+    <ImageButton
         android:id="@+id/btnRecipes"
         android:layout_width="120dp"
-        android:layout_height="80dp"
+        android:layout_height="120dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="150dp"
+        android:background="@drawable/recipes_icon"
         android:text="Recipes"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btnPantry"
         android:layout_width="120dp"
-        android:layout_height="80dp"
+        android:layout_height="120dp"
         android:layout_marginTop="150dp"
         android:layout_marginEnd="60dp"
         android:text="My Pantry"
+        android:background="@drawable/pantry_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btnShoppingList"
         android:layout_width="120dp"
-        android:layout_height="80dp"
+        android:layout_height="120dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="310dp"
         android:text="Shopping List"
+        android:background="@drawable/grocery_list_icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btnMyAccount"
         android:layout_width="120dp"
-        android:layout_height="80dp"
+        android:layout_height="120dp"
         android:layout_marginTop="310dp"
         android:layout_marginEnd="60dp"
         android:text="My Account"
+        android:background="@drawable/wfd_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,12 +61,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btnCamera"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
+        android:background="@drawable/camera"
         android:text="Camera"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
