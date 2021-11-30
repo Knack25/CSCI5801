@@ -32,6 +32,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.wfd.ui.main.SectionsPagerAdapter;
@@ -151,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Wire up the Recipes button to do stuff
         //..get the Recipes button
-        Button btnRecipes = findViewById(R.id.btnRecipes);
+        ImageButton btnRecipes = findViewById(R.id.btnRecipes);
         //..set what happens when the user clicks on Recipes - will do more things when things are coded
         btnRecipes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Wire up the My Pantry button to do stuff
         //..get the My Pantry button
-        Button btnPantry = findViewById(R.id.btnPantry);
+        ImageButton btnPantry = findViewById(R.id.btnPantry);
         //..set what happens when the user clicks on My Pantry - will do more things when things are coded
         btnPantry.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Wire up the Shopping List button to do stuff
         //..get the Shopping List button
-        Button btnShoppingList = findViewById(R.id.btnShoppingList);
+        ImageButton btnShoppingList = findViewById(R.id.btnShoppingList);
         //..set what happens when the user clicks on Shopping List - will do more things when things are coded
         btnShoppingList.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Wire up the My Account button to do stuff
         //..get the My Account button
-        Button btnMyAccount = findViewById(R.id.btnMyAccount);
+        ImageButton btnMyAccount = findViewById(R.id.btnMyAccount);
         //..set what happens when the user clicks on My Account - will do more things when things are coded
         btnMyAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -217,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Wire up the Camera button to do stuff
         //..get the Camera button
-        Button btnCamera = findViewById(R.id.btnCamera);
+        ImageButton btnCamera = findViewById(R.id.btnCamera);
         //..set what happens when the user clicks on the Camera - will do more things when things are coded
         btnCamera.setOnClickListener(v -> {
 //            @Override
