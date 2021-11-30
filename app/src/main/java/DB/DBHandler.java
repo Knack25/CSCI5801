@@ -111,7 +111,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 + REC_ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + REC_NAME + " TEXT,"
                 + REC_DESC + " TEXT,"
-                + REC_INSTRUCTIONS + "TEXT)";
+                + REC_INSTRUCTIONS + " TEXT)";
 
         // at last we are calling a exec sql
         // method to execute above sql query
@@ -224,13 +224,14 @@ public class DBHandler extends SQLiteOpenHelper {
         ArrayList<Recipe> recipes = new ArrayList<Recipe>();
         ArrayList<Ingredient> ingredients = new ArrayList<>();
 
-        db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT name FROM " + TABLE_RECIPE,null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_RECIPE,null);
 
         if(cursor.moveToFirst()){
             do {
-                recipes.add(new Recipe(ingredients,cursor.getString(2),cursor.getString(3),cursor.getString(4)));
+                recipes.add(new Recipe(ingredients,cursor.getString(1),cursor.getString(2),
+                        cursor.getString(3)));
             } while (cursor.moveToNext());
         }
         cursor.close();

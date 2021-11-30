@@ -6,6 +6,12 @@
 
     <string name="capture_button_alt">Capture</string>
     <string name="unknown">UNKNOWN</string>
+    <string name="ingredient_name">ingredient name</string>
+    <string name="amount">amount</string>
+    <string name="amt_type">amt type</string>
+    <string name="recipes">Recipes</string>
+    <string name="recipe_name">recipe name</string>
+    <string name="new_recipe">New Recipe</string>
 
     <string-array name="measurements">
         <item>CUP</item>
