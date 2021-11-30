@@ -1,13 +1,16 @@
 package DB.Objects;
 
 
-public class Ingredient {
+import java.io.Serializable;
+
+public class Ingredient implements Serializable {
 
 
     private String name;
     private int upc;
     private double ammount;
     private String ammount_type;
+    private int ID;
 
     public Ingredient(){
 
@@ -20,6 +23,19 @@ public class Ingredient {
         this.ammount_type = ammount_type;
 
     }
+
+    public Ingredient(int ID,String name, int upc, double ammount, String ammount_type){
+        this.name = name;
+        this.upc = upc;
+        this.ammount = ammount;
+        this.ammount_type = ammount_type;
+        this.ID = ID;
+
+    }
+
+    public int getID(){return ID;}
+
+    public void setID(int _ID){this.ID = _ID;}
 
     public String getName() {
         return name;

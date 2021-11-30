@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -36,7 +37,7 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String RECING_ID_COL = "recingid";
     private static final String RECIPE_ID_COL = "recid";
     private static final String INGREDIENT_ID_COL = "ingid";
-    private static final String RECING_NAME = "id";
+    private static final String RECING_NAME = "recingname";
     private static final String RECING_AMOUNT_COL = "amount";
     private static final String RECING_AMOUNT_TYPE_COL = "amnt_type";
 
@@ -123,7 +124,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 + RECING_AMOUNT_COL + " INT,"
                 + RECIPE_ID_COL + " INT,"
                 + INGREDIENT_ID_COL + " INT,"
-                + RECING_AMOUNT_TYPE_COL + "TEXT)";
+                + RECING_AMOUNT_TYPE_COL + " TEXT)";
 
         db.execSQL(query);
 
@@ -167,7 +168,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         if(cursor.moveToFirst()){
             do {
-                ingredientArrayList.add(new Ingredient(cursor.getString(1),cursor.getInt(2),
+                ingredientArrayList.add(new Ingredient(cursor.getInt(0),cursor.getString(1),cursor.getInt(2),
                         cursor.getDouble(3), cursor.getString(4)));
             } while (cursor.moveToNext());
         }
@@ -196,9 +197,9 @@ public class DBHandler extends SQLiteOpenHelper {
         return true;
     }
 
-    public boolean addRecipeIngredient(String name, int recipeID,int ingredientID,int amount,int type){
+    public boolean addRecipeIngredient(String name, int recipeID,int ingredientID,int amount,String type){
 
-        db = this.getWritableDatabase();
+        db = this.getReadableDatabase();
 
         ContentValues values = new ContentValues();
 
@@ -230,8 +231,10 @@ public class DBHandler extends SQLiteOpenHelper {
 
         if(cursor.moveToFirst()){
             do {
-                recipes.add(new Recipe(ingredients,cursor.getString(1),cursor.getString(2),
-                        cursor.getString(3)));
+                recipes.add(new Recipe(cursor.getInt(0),ingredients,cursor.getString(1),cursor.getString(2),
+                        cursor.getString(3))
+
+                );
             } while (cursor.moveToNext());
         }
         cursor.close();
@@ -263,6 +266,24 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
 
+    public ArrayList<Ingredient> getRecipeIngredients(int recipeID){
+        ArrayList<Ingredient> ingredients = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_RECIPE_INGREDIENTS + " WHERE " +
+                RECIPE_ID_COL + " = " + recipeID,null);
+
+        if(cursor.moveToFirst()){
+            do {
+                ingredients.add(new Ingredient(cursor.getString(1),cursor.getInt(2),
+                        cursor.getDouble(3), cursor.getString(4)));
+            } while (cursor.moveToNext());
+        }
+
+        Log.v("DEBUG","Ingredients has a size of: " + String.valueOf(ingredients.size()));
+        return ingredients;
+    }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // this method is called to check if the table exists already.

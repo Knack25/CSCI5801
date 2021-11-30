@@ -15,6 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WFD">
         <activity
+            android:name=".recipe.RecipeDetails"
+            android:exported="false" />
+        <activity
+            android:name=".recipe.RecipeAddIngredients"
+            android:exported="false" />
+        <activity
             android:name=".recipe.Add_Recipe_Popup"
             android:exported="false" />
         <activity

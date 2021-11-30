@@ -12,6 +12,11 @@
     <string name="recipes">Recipes</string>
     <string name="recipe_name">recipe name</string>
     <string name="new_recipe">New Recipe</string>
+    <string name="add_ingredient">Add Ingredient</string>
+    <string name="select_an_ingredient">Select An Ingredient</string>
+    <string name="enter_an_ammount">Enter an Ammount</string>
+    <string name="unit_type">Unit Type:</string>
+
 
     <string-array name="measurements">
         <item>CUP</item>
