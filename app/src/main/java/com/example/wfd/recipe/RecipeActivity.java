@@ -33,6 +33,7 @@ public class RecipeActivity extends AppCompatActivity {
 
         ArrayList<Recipe> recipeList = new ArrayList<>();
 
+        //Get the list of recipes from the DB
         recipeList = MainActivity.dbHandler.getRecipeList();
 
 
@@ -41,23 +42,27 @@ public class RecipeActivity extends AppCompatActivity {
         ListView recipeListView = (ListView) findViewById(R.id.recipeListView);
         recipeListView.setAdapter(recipeAdapter);
 
+        //If a recipe is selected...
         recipeListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Recipe recipe = (Recipe) adapterView.getItemAtPosition(i);
+                //Go to the details page of that recipe
                 Intent intent = new Intent(adapterView.getContext(),RecipeDetails.class);
                 intent.putExtra("Recipe", recipe);
                 startActivity(intent);
             }
         });
 
+        //Add recipe button
         FloatingActionButton addRecipe = (FloatingActionButton) findViewById(R.id.addRecipe);
         addRecipe.setOnClickListener(v -> {
             Intent intent = new Intent(this, Add_Recipe_Popup.class);
             startActivity(intent);
         });
 
+        //Return button
         FloatingActionButton recipereturn = (FloatingActionButton) findViewById(R.id.recipeBackButton);
         recipereturn.setOnClickListener(v -> {
             Intent intent = new Intent(this, MainActivity.class);

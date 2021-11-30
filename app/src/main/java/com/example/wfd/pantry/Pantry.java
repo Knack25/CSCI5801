@@ -23,22 +23,25 @@ public class Pantry extends AppCompatActivity {
 
         ArrayList<Ingredient> ingredientList = new ArrayList<>();
 
+        //Grap list from DB
         ingredientList = MainActivity.dbHandler.getAvailableIngredients();
 
 
 
-
+        //Link View Adapter
         PantryAdapter pantryAdapter = new PantryAdapter(ingredientList, this);
 
         ListView pantryListView = (ListView) findViewById(R.id.pantryListView);
         pantryListView.setAdapter(pantryAdapter);
 
+        //Add Ingredient Button
         FloatingActionButton addIngredient = (FloatingActionButton) findViewById(R.id.addIngredient);
         addIngredient.setOnClickListener(v -> {
             Intent intent = new Intent(this,Add_Ingredient_Popup.class);
             startActivity(intent);
         });
 
+        //Return Button
         FloatingActionButton returnMenu = (FloatingActionButton) findViewById(R.id.pantryReturntoMenuButton);
         returnMenu.setOnClickListener(v -> {
             Intent intent = new Intent(this,MainActivity.class);

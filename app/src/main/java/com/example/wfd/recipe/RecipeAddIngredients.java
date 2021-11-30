@@ -29,6 +29,7 @@ public class RecipeAddIngredients extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_add_ingredients);
 
+        //Get passed recipe from Intent
         Recipe recipe = (Recipe) getIntent().getSerializableExtra("Recipe");
 
         ingredientSpinner = findViewById(R.id.Ingredientspinner);
@@ -36,12 +37,13 @@ public class RecipeAddIngredients extends AppCompatActivity {
         Spinner type = findViewById(R.id.amountTypeSpinner);
         Button addIngredient = findViewById(R.id.addIngredientAddButton);
 
-
+        //Arrange data for the type spinner
         ArrayAdapter<CharSequence> adaptertype = ArrayAdapter.createFromResource(this,R.array.measurements, android.R.layout.simple_spinner_item);
         Log.v("DEBUG",adaptertype.toString());
         adaptertype.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         type.setAdapter(adaptertype);
 
+        //Arrange data for the ingredient spinner
         loadIngredientSpinnerData(recipe.getID());
 
         addIngredient.setOnClickListener(view -> {

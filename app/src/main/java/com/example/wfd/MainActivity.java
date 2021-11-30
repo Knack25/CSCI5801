@@ -33,13 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    //TODO: Database Socket
-    //TODO: Connection Class
-    //TODO: Query Class
-    //TODO: Push Update Class
-    //TODO: GUI
-    //TODO: Ingredients Page
-    //TODO: Recipe Page
+
     //TODO: Shopping List
     //TODO: Pop-up Tutorial
 
@@ -50,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
+        //Create global database Handler
         dbHandler = new DBHandler(MainActivity.this);
 
 
@@ -65,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         //Wire up the Recipes button to do stuff
         //..get the Recipes button
         ImageButton btnRecipes = findViewById(R.id.btnRecipes);
-        //..set what happens when the user clicks on Recipes - will do more things when things are coded
+        //..set what happens when the user clicks on Recipes
         btnRecipes.setOnClickListener(v -> {
             Intent intent = new Intent(this, RecipeActivity.class);
             startActivity(intent);
@@ -75,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         //Wire up the My Pantry button to do stuff
         //..get the My Pantry button
         ImageButton btnPantry = findViewById(R.id.btnPantry);
-        //..set what happens when the user clicks on My Pantry - will do more things when things are coded
+        //..set what happens when the user clicks on My Pantry
         btnPantry.setOnClickListener(v -> {
             Intent intent = new Intent(this, Pantry.class);
             startActivity(intent);
@@ -85,12 +80,7 @@ public class MainActivity extends AppCompatActivity {
         //..get the Shopping List button
         ImageButton btnShoppingList = findViewById(R.id.btnShoppingList);
 
-        //..set what happens when the user clicks on Shopping List - will do more things when things are coded
-//        btnShoppingList.setOnClickListener(v -> {
-//            Intent intent = new Intent(this, Shopping.class);
-//            startActivity(intent);
-//
-//        });
+        //..set what happens when the user clicks on Shopping List
         btnShoppingList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         //Wire up the My Account button to do stuff
         //..get the My Account button
         ImageButton btnMyAccount = findViewById(R.id.btnMyAccount);
-        //..set what happens when the user clicks on My Account - will do more things when things are coded
+        //..set what happens when the user clicks on My Account
         btnMyAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

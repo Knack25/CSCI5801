@@ -33,24 +33,27 @@ public class Add_Recipe_Popup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_recipe_popup);
 
+        //Setup view inflator
         inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         popupView = inflater.inflate(R.layout.activity_add_recipe_popup,null);
         width = LinearLayout.LayoutParams.WRAP_CONTENT;
         height = LinearLayout.LayoutParams.WRAP_CONTENT;
         popupWindow = new PopupWindow(popupView, width, height, focusable);
 
+        //Grab layout elements
         EditText name = (EditText) findViewById(R.id.newrecipeName);
         EditText description = (EditText) findViewById(R.id.newrecipeDescription);
         EditText steps = (EditText) findViewById(R.id.newrecipeSteps);
         Button addrecipe = (Button) findViewById(R.id.newrecipeButton);
 
 
-
+        //If the add recipe button is clicked
         addrecipe.setOnClickListener(v -> {
             MainActivity.dbHandler.createRecipe(String.valueOf(name.getText()),String.valueOf(description.getText()),
                     String.valueOf(steps.getText()));
 
             Log.v("DEBUG","Adding Recipe to DB");
+            //Return to the recipe screen
             Intent intent = new Intent(this, RecipeActivity.class);
             startActivity(intent);
         });

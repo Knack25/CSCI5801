@@ -39,23 +39,28 @@ public class Add_Ingredient_Popup extends AppCompatActivity {
         height = LinearLayout.LayoutParams.WRAP_CONTENT;
         popupWindow = new PopupWindow(popupView, width, height, focusable);
 
+        //Grab elements from layout
         EditText name = (EditText) findViewById(R.id.newingredientName);
         EditText amount = (EditText) findViewById(R.id.newingredientamount);
         Spinner type = (Spinner) findViewById(R.id.newingredienttype);
         EditText upc = (EditText) findViewById(R.id.newingredientUPC);
         Button addingredient = (Button) findViewById(R.id.newingredientbutton);
 
+        //set up data handling for the Spinner
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.measurements, android.R.layout.simple_spinner_item);
         Log.v("DEBUG",adapter.toString());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         type.setAdapter(adapter);
 
 
+        //If the add ingredient button is pressed
         addingredient.setOnClickListener(v -> {
+            //Add ingredient to DB
             MainActivity.dbHandler.addIngredient(String.valueOf(name.getText()),String.valueOf(upc.getText()),
                     Integer.valueOf(String.valueOf(amount.getText())),String.valueOf(type.getSelectedItem()));
 
             Log.v("DEBUG","Adding Ingredient to DB");
+            //Return to pantry
             Intent intent = new Intent(this, Pantry.class);
             startActivity(intent);
         });

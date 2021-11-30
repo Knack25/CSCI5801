@@ -32,7 +32,7 @@ public class PantryAdapter extends BaseAdapter implements ListAdapter {
         private Context context;
 
 
-
+        //Constructor
         public PantryAdapter(ArrayList<Ingredient> list, Context context) {
             this.list = list;
             this.context = context;
@@ -72,6 +72,7 @@ public class PantryAdapter extends BaseAdapter implements ListAdapter {
 
             TextView amountType = (TextView) view.findViewById(R.id.pantryAmountType);
 
+            //If there is more than one amount of the given item
             if (list.get(position).getAmmount() > 1){
                 amountType.setText(list.get(position).getAmmount_type() + "S");
             }else{
