@@ -1,70 +1,32 @@
 package com.example.wfd;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.tabs.TabLayout;
-
-import androidx.annotation.NonNull;
-import androidx.camera.core.AspectRatio;
-import androidx.camera.core.Camera;
-import androidx.camera.core.CameraSelector;
-import androidx.camera.core.ImageAnalysis;
-import androidx.camera.core.Preview;
-import androidx.camera.lifecycle.ProcessCameraProvider;
-import androidx.camera.view.PreviewView;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.MutableLiveData;
-import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.SystemClock;
 import android.util.Log;
-import android.util.Size;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.wfd.ui.main.SectionsPagerAdapter;
 import com.example.wfd.databinding.ActivityMainBinding;
-import com.google.common.util.concurrent.ListenableFuture;
-import com.google.mlkit.vision.common.InputImage;
 
-import java.util.Locale;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicReference;
-
-import DB.Objects.Ingredient;
-import DB.Socket;
-import io.realm.Realm;
-import io.realm.RealmResults;
+import DB.DBHandler;
 import io.realm.mongodb.App;
-import io.realm.mongodb.AppConfiguration;
-import io.realm.mongodb.Credentials;
-import io.realm.mongodb.User;
-import io.realm.mongodb.sync.SyncConfiguration;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    public static AtomicReference<User> user = new AtomicReference<User>();
+   // public static AtomicReference<User> user = new AtomicReference<User>();
     public static App app;
-    private static final AtomicBoolean success = new AtomicBoolean(false);
-    private static Ingredient testingredient;
+    //private static final AtomicBoolean success = new AtomicBoolean(false);
+    //private static Ingredient testingredient;
 
     private static final String TAG = "WFD";
+
+    private DBHandler dbHandler;
 
 
     //TODO: Database Socket
@@ -84,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
+    //    dbHandler = new DBHandler(MainActivity.this);
 
 
         com.example.wfd.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -91,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
 
-
+/*
         Realm.init(this);
         String appID = "wfd-ppxod";
         app = new App(new AppConfiguration.Builder(appID).build());
@@ -130,21 +93,23 @@ public class MainActivity extends AppCompatActivity {
                         "Successfully opened a realm with reads and writes allowed on the UI thread."
                 );
 
-//                testingredient = new Ingredient("Flour", 1345546754,10,
-//                        "lbs",app.currentUser().getId());
+                realm.executeTransaction(r -> {
+                    Ingredient testingredient = r.createObject(Ingredient.class,new ObjectId());
+                    testingredient.setName("Flour");
+                    testingredient.setUpc(1345546754);
+                    testingredient.setAmmount(10);
+                    testingredient.setAmmount_type("lbs");
+                    r.insert(testingredient);
+                });
 
-//                realm.executeTransaction(r -> {
-//                    r.insert(testingredient);
-//                });
+                RealmResults<Ingredient> ingredients = realm.where(Ingredient.class).findAll();
 
-               // RealmResults<Ingredient> ingredients = realm.where(Ingredient.class).findAll();
-
-              //  Log.d("DEBUG", ingredients.toString());
+                Log.d("DEBUG", ingredients.toString());
                 realm.close();
                 success.set(true);
             }
         });
-
+*/
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
