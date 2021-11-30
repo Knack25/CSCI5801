@@ -1,24 +1,9 @@
 package DB.Objects;
 
 
-
-import org.bson.types.ObjectId;
-
-import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
-
-public class Ingredient extends RealmObject {
+public class Ingredient {
 
 
-    public ObjectId get_id() {
-        return _id;
-    }
-
-    public void set_id(ObjectId _id) {
-        this._id = _id;
-    }
-
-    @PrimaryKey private ObjectId _id;
     private String name;
     private int upc;
     private double ammount;
@@ -28,12 +13,12 @@ public class Ingredient extends RealmObject {
 
     }
 
-    public Ingredient(String name, int upc, double ammount, String ammount_type,ObjectId _id){
+    public Ingredient(String name, int upc, double ammount, String ammount_type){
         this.name = name;
         this.upc = upc;
         this.ammount = ammount;
         this.ammount_type = ammount_type;
-        this._id = _id;
+
     }
 
     public String getName() {

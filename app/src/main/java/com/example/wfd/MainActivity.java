@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-    //    dbHandler = new DBHandler(MainActivity.this);
+        dbHandler = new DBHandler(MainActivity.this);
 
 
         com.example.wfd.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
