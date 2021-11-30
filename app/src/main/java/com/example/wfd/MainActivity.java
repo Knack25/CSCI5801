@@ -1,6 +1,7 @@
 package com.example.wfd;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.wfd.pantry.Pantry;
 import com.example.wfd.ui.main.SectionsPagerAdapter;
 import com.example.wfd.databinding.ActivityMainBinding;
 
@@ -27,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "WFD";
 
-    private DBHandler dbHandler;
+    public static DBHandler dbHandler;
+
 
 
     //TODO: Database Socket
@@ -133,13 +136,9 @@ public class MainActivity extends AppCompatActivity {
         //..get the My Pantry button
         ImageButton btnPantry = findViewById(R.id.btnPantry);
         //..set what happens when the user clicks on My Pantry - will do more things when things are coded
-        btnPantry.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i(TAG, "This shows My Pantry.");
-                Toast.makeText(getApplicationContext(), "My Pantry", Toast.LENGTH_SHORT)
-                        .show();
-            }
+        btnPantry.setOnClickListener(v -> {
+            Intent intent = new Intent(this, Pantry.class);
+            startActivity(intent);
         });
 
         //Wire up the Shopping List button to do stuff

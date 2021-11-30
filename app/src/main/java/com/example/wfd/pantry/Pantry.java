@@ -7,10 +7,12 @@ import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.wfd.MainActivity;
 import com.example.wfd.R;
 
 import java.util.ArrayList;
 
+import DB.DBHandler;
 import DB.Objects.Ingredient;
 
 public class Pantry extends AppCompatActivity {
@@ -21,6 +23,9 @@ public class Pantry extends AppCompatActivity {
         setContentView(R.layout.activity_pantry);
 
         ArrayList<Ingredient> ingredientList = new ArrayList<>();
+
+        ingredientList = MainActivity.dbHandler.getAvailableIngredients();
+
 
 
 

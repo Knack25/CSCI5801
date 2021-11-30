@@ -26,14 +26,14 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String TABLE_MEASURE = "measurements";
 
     // Ingredients Columns
-    private static final String ING_ID_COL = "id";
+    private static final String ING_ID_COL = "ingid";
     private static final String ING_NAME_COL = "name";
     private static final String ING_UPC_COL = "upc";
     private static final String ING_AMOUNT_COL = "amount";
     private static final String ING_AMOUNT_TYPE_COL = "amnt_type";
 
     // Recipe Ingredients Columns
-    private static final String RECING_ID_COL = "id";
+    private static final String RECING_ID_COL = "recingid";
     private static final String RECIPE_ID_COL = "recid";
     private static final String INGREDIENT_ID_COL = "ingid";
     private static final String RECING_NAME = "id";
@@ -41,14 +41,15 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String RECING_AMOUNT_TYPE_COL = "amnt_type";
 
     // Recipe Columns
-    private static final String REC_ID_COL = "id";
+    private static final String REC_ID_COL = "recid";
     private static final String REC_NAME = "name";
     private static final String REC_DESC = "description";
     private static final String REC_INSTRUCTIONS = "instructions";
 
     //Measurement Columns
-    private static final String MEAS_ID_COL = "id";
+    private static final String MEAS_ID_COL = "measid";
     private static final String MEAS_NAME = "name";
+    private static SQLiteDatabase db;
 
 
     // creating a constructor for our database handler.
@@ -65,28 +66,28 @@ public class DBHandler extends SQLiteOpenHelper {
 
     }
 
-    private void Generate_Default_Data(SQLiteDatabase db){
+    public void Generate_Default_Data(SQLiteDatabase db){
 
-        db = this.getWritableDatabase();
+
 
         ContentValues values = new ContentValues();
 
 
         values.put(MEAS_NAME, "CUP");
 
-        db.insert(TABLE_INGREDIENTS, null, values);
+        db.insert(TABLE_MEASURE, null, values);
 
         values.put(MEAS_NAME, "TEASPOON");
 
-        db.insert(TABLE_INGREDIENTS, null, values);
+        db.insert(TABLE_MEASURE, null, values);
 
         values.put(MEAS_NAME, "TABLESPOON");
 
-        db.insert(TABLE_INGREDIENTS, null, values);
+        db.insert(TABLE_MEASURE, null, values);
 
 
 
-        db.close();
+       // db.close();
 
     }
 
@@ -129,10 +130,10 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(query);
     }
 
-    public boolean addIngredient(SQLiteDatabase db,String name,String upc ,int amount,String amount_type){
+    public boolean addIngredient(String name,String upc ,int amount,String amount_type){
 
 
-                db = this.getWritableDatabase();
+              //  db = this.getWritableDatabase();
 
                 ContentValues values = new ContentValues();
 
@@ -143,7 +144,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         final long insert = db.insert(TABLE_INGREDIENTS, null, values);
 
-        db.close();
+        //db.close();
 
 
             if(insert == -1){
@@ -153,12 +154,12 @@ public class DBHandler extends SQLiteOpenHelper {
             return true;
     }
 
-    public ArrayList<Ingredient> getAvailableIngredients(SQLiteDatabase db){
+    public ArrayList<Ingredient> getAvailableIngredients(){
         ArrayList<Ingredient> ingredientArrayList = new ArrayList<Ingredient>();
 
-        db = this.getReadableDatabase();
+        //db = this.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_INGREDIENTS,null);
+        Cursor cursor = getReadableDatabase().rawQuery("SELECT * FROM " + TABLE_INGREDIENTS,null);
 
         if(cursor.moveToFirst()){
             do {
@@ -167,11 +168,11 @@ public class DBHandler extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         cursor.close();
-        db.close();
+       // db.close();
         return ingredientArrayList;
     }
 
-    public boolean createRecipe(SQLiteDatabase db,String name,String descprition,String steps){
+    public boolean createRecipe(String name,String descprition,String steps){
 
         db   = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -182,7 +183,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         long insert = db.insert(TABLE_RECIPE, null, values);
 
-        db.close();
+        //db.close();
 
 
          if (insert == -1){
@@ -191,7 +192,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return true;
     }
 
-    public boolean addRecipeIngredient(SQLiteDatabase db,String name, int recipeID,int ingredientID,int amount,int type){
+    public boolean addRecipeIngredient(String name, int recipeID,int ingredientID,int amount,int type){
 
         db = this.getWritableDatabase();
 
@@ -206,7 +207,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         long insert = db.insert(TABLE_RECIPE_INGREDIENTS, null, values);
 
-        db.close();
+       // db.close();
 
 
         if (insert == -1){
@@ -215,7 +216,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return true;
     }
 
-    public ArrayList<String> getRecipeList(SQLiteDatabase db){
+    public ArrayList<String> getRecipeList(){
         ArrayList<String> recipes = new ArrayList<String>();
 
         db = this.getReadableDatabase();
@@ -228,16 +229,16 @@ public class DBHandler extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         cursor.close();
-        db.close();
+        //db.close();
 
 
         return  recipes;
     }
 
-    public Recipe getRecipe(SQLiteDatabase db, String name){
+    public Recipe getRecipe( String name){
         Recipe recipe = new Recipe();
 
-        db = this.getReadableDatabase();
+        //db = this.getReadableDatabase();
 
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_RECIPE + " WHERE name = " + name,null);
 
