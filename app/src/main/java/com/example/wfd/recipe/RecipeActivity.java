@@ -58,5 +58,11 @@ public class RecipeActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        FloatingActionButton recipereturn = (FloatingActionButton) findViewById(R.id.recipeBackButton);
+        recipereturn.setOnClickListener(v -> {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        });
+
     }
 }

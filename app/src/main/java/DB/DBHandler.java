@@ -276,8 +276,8 @@ public class DBHandler extends SQLiteOpenHelper {
 
         if(cursor.moveToFirst()){
             do {
-                ingredients.add(new Ingredient(cursor.getString(1),cursor.getInt(2),
-                        cursor.getDouble(3), cursor.getString(4)));
+                ingredients.add(new Ingredient(cursor.getString(1),0000000000,
+                        cursor.getDouble(2), cursor.getString(5)));
             } while (cursor.moveToNext());
         }
 

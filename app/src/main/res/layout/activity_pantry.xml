@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         app:srcCompat="@android:drawable/ic_input_add"
+        tools:ignore="SpeakableTextPresentCheck"
         tools:layout_editor_absoluteX="356dp"
         tools:layout_editor_absoluteY="669dp" />
 
@@ -35,6 +36,19 @@
         app:layout_constraintTop_toBottomOf="@+id/pantryHeader" >
 
     </android.widget.ListView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/pantryReturntoMenuButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="4dp"
+        android:clickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/pantryHeader"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_revert"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

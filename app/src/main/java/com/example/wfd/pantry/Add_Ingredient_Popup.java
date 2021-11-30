@@ -1,5 +1,6 @@
 package com.example.wfd.pantry;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -55,7 +56,8 @@ public class Add_Ingredient_Popup extends AppCompatActivity {
                     Integer.valueOf(String.valueOf(amount.getText())),String.valueOf(type.getSelectedItem()));
 
             Log.v("DEBUG","Adding Ingredient to DB");
-            popupWindow.dismiss();
+            Intent intent = new Intent(this, Pantry.class);
+            startActivity(intent);
         });
 
 

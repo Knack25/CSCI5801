@@ -86,11 +86,19 @@ public class MainActivity extends AppCompatActivity {
         ImageButton btnShoppingList = findViewById(R.id.btnShoppingList);
 
         //..set what happens when the user clicks on Shopping List - will do more things when things are coded
-        btnShoppingList.setOnClickListener(v -> {
-            Intent intent = new Intent(this, Shopping.class);
-            startActivity(intent);
+//        btnShoppingList.setOnClickListener(v -> {
+//            Intent intent = new Intent(this, Shopping.class);
+//            startActivity(intent);
+//
+//        });
+        btnShoppingList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "This shows my shopping list.");
+                Toast.makeText(getApplicationContext(), "Coming Soon!", Toast.LENGTH_SHORT)
+                        .show();
+            }
         });
-
         //Wire up the My Account button to do stuff
         //..get the My Account button
         ImageButton btnMyAccount = findViewById(R.id.btnMyAccount);
@@ -99,33 +107,33 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "This shows My Account.");
-                Toast.makeText(getApplicationContext(), "My Account", Toast.LENGTH_SHORT)
+                Toast.makeText(getApplicationContext(), "Coming Soon!", Toast.LENGTH_SHORT)
                         .show();
             }
         });
 
-        //Wire up the Tutorial button to do stuff
-        //..get the Tutorial button
-        Button btnTutorial = findViewById(R.id.btnTutorial);
-        //..set what happens when the user clicks on the Tutorial - will do more things when things are coded
-        btnTutorial.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i(TAG, "This shows the Tutorial.");
-                Toast.makeText(getApplicationContext(), "Tutorial", Toast.LENGTH_SHORT)
-                        .show();
-            }
-        });
-
-        //Wire up the Camera button to do stuff
-        //..get the Camera button
-        ImageButton btnCamera = findViewById(R.id.btnCamera);
-        //..set what happens when the user clicks on the Camera - will do more things when things are coded
-        btnCamera.setOnClickListener(v -> {
-            Intent intent = new Intent(this, CameraActivity.class);
-            startActivity(intent);
-
-        });
+//        //Wire up the Tutorial button to do stuff
+//        //..get the Tutorial button
+//        Button btnTutorial = findViewById(R.id.btnTutorial);
+//        //..set what happens when the user clicks on the Tutorial - will do more things when things are coded
+//        btnTutorial.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Log.i(TAG, "This shows the Tutorial.");
+//                Toast.makeText(getApplicationContext(), "Tutorial", Toast.LENGTH_SHORT)
+//                        .show();
+//            }
+//        });
+//
+//        //Wire up the Camera button to do stuff
+//        //..get the Camera button
+//        ImageButton btnCamera = findViewById(R.id.btnCamera);
+//        //..set what happens when the user clicks on the Camera - will do more things when things are coded
+//        btnCamera.setOnClickListener(v -> {
+//            Intent intent = new Intent(this, CameraActivity.class);
+//            startActivity(intent);
+//
+//        });
 
     }
 }

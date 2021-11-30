@@ -39,6 +39,12 @@ public class Pantry extends AppCompatActivity {
             startActivity(intent);
         });
 
+        FloatingActionButton returnMenu = (FloatingActionButton) findViewById(R.id.pantryReturntoMenuButton);
+        returnMenu.setOnClickListener(v -> {
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
+        });
+
     }
 
 

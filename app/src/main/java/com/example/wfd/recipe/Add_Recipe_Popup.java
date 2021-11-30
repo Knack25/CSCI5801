@@ -1,5 +1,6 @@
 package com.example.wfd.recipe;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -50,7 +51,8 @@ public class Add_Recipe_Popup extends AppCompatActivity {
                     String.valueOf(steps.getText()));
 
             Log.v("DEBUG","Adding Recipe to DB");
-            popupWindow.dismiss();
+            Intent intent = new Intent(this, RecipeActivity.class);
+            startActivity(intent);
         });
 
 

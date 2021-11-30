@@ -25,6 +25,18 @@
         tools:layout_editor_absoluteX="356dp"
         tools:layout_editor_absoluteY="669dp" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/recipeBackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/recipeHeader"
+        app:layout_constraintTop_toTopOf="@+id/constRecipesText"
+        app:srcCompat="@android:drawable/ic_menu_revert"
+        tools:ignore="SpeakableTextPresentCheck" />
+
     <android.widget.ListView
         android:id="@+id/recipeListView"
         android:layout_width="0dp"

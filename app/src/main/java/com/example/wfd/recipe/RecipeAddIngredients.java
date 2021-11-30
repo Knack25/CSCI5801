@@ -1,5 +1,6 @@
 package com.example.wfd.recipe;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
@@ -50,7 +51,12 @@ public class RecipeAddIngredients extends AppCompatActivity {
                     recipe.getID(),_ID,
                     Integer.valueOf(String.valueOf(ammount.getText())),String.valueOf(type.getSelectedItem())
                     )){
-                Log.v("DEBUG","Successfully Entered Ingredient: " + _ID + " into recipe: " + recipe.getID());
+                Log.v("DEBUG","Successfully Entered Ingredient: " + _ID +
+                        " into recipe: " + recipe.getID());
+
+                Intent intent = new Intent(this, RecipeDetails.class);
+                intent.putExtra("Recipe",recipe);
+                startActivity(intent);
             }
         });
     }
