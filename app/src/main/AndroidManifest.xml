@@ -15,9 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WFD">
-        <activity
-            android:name=".Shopping"
-            android:exported="false" />
+        <activity android:name=".Shopping"></activity>
+        <activity android:name=".pantry.Pantry"></activity>
         <activity
             android:name=".MainActivity"
             android:exported="true"

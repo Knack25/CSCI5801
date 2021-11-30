@@ -145,14 +145,11 @@ public class MainActivity extends AppCompatActivity {
         //Wire up the Shopping List button to do stuff
         //..get the Shopping List button
         ImageButton btnShoppingList = findViewById(R.id.btnShoppingList);
+
         //..set what happens when the user clicks on Shopping List - will do more things when things are coded
-        btnShoppingList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i(TAG, "This shows the Shopping List.");
-                Toast.makeText(getApplicationContext(), "Shopping List", Toast.LENGTH_SHORT)
-                        .show();
-            }
+        btnShoppingList.setOnClickListener(v -> {
+            Intent intent = new Intent(this, Shopping.class);
+            startActivity(intent);
         });
 
         //Wire up the My Account button to do stuff
@@ -186,12 +183,6 @@ public class MainActivity extends AppCompatActivity {
         ImageButton btnCamera = findViewById(R.id.btnCamera);
         //..set what happens when the user clicks on the Camera - will do more things when things are coded
         btnCamera.setOnClickListener(v -> {
-//            @Override
-//            public void onClick(View view) {
-//                Log.i(TAG, "This shows the Camera.");
-//                Toast.makeText(getApplicationContext(), "Camera", Toast.LENGTH_SHORT)
-//                        .show();
-//            }
             Intent intent = new Intent(this, CameraActivity.class);
             startActivity(intent);
 
