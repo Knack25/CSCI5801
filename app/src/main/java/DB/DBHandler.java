@@ -85,6 +85,10 @@ public class DBHandler extends SQLiteOpenHelper {
 
         db.insert(TABLE_MEASURE, null, values);
 
+        values.put(MEAS_NAME,"UNIT");
+
+        db.insert(TABLE_MEASURE,null,values);
+
 
 
        // db.close();
@@ -133,7 +137,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public boolean addIngredient(String name,String upc ,int amount,String amount_type){
 
 
-              //  db = this.getWritableDatabase();
+                SQLiteDatabase db = this.getReadableDatabase();
 
                 ContentValues values = new ContentValues();
 
@@ -144,7 +148,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         final long insert = db.insert(TABLE_INGREDIENTS, null, values);
 
-        //db.close();
+        db.close();
 
 
             if(insert == -1){
@@ -163,8 +167,8 @@ public class DBHandler extends SQLiteOpenHelper {
 
         if(cursor.moveToFirst()){
             do {
-                ingredientArrayList.add(new Ingredient(cursor.getString(2),cursor.getInt(3),cursor.getDouble(4),
-                        cursor.getString(5)));
+                ingredientArrayList.add(new Ingredient(cursor.getString(1),cursor.getInt(2),
+                        cursor.getDouble(3), cursor.getString(4)));
             } while (cursor.moveToNext());
         }
         cursor.close();
@@ -216,8 +220,9 @@ public class DBHandler extends SQLiteOpenHelper {
         return true;
     }
 
-    public ArrayList<String> getRecipeList(){
-        ArrayList<String> recipes = new ArrayList<String>();
+    public ArrayList<Recipe> getRecipeList(){
+        ArrayList<Recipe> recipes = new ArrayList<Recipe>();
+        ArrayList<Ingredient> ingredients = new ArrayList<>();
 
         db = this.getReadableDatabase();
 
@@ -225,14 +230,14 @@ public class DBHandler extends SQLiteOpenHelper {
 
         if(cursor.moveToFirst()){
             do {
-                recipes.add(cursor.getString(2));
+                recipes.add(new Recipe(ingredients,cursor.getString(2),cursor.getString(3),cursor.getString(4)));
             } while (cursor.moveToNext());
         }
         cursor.close();
         //db.close();
 
 
-        return  recipes;
+        return recipes;
     }
 
     public Recipe getRecipe( String name){

@@ -16,6 +16,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addIngredient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:srcCompat="@android:drawable/ic_input_add"
+        tools:layout_editor_absoluteX="356dp"
+        tools:layout_editor_absoluteY="669dp" />
+
     <android.widget.ListView
         android:id="@+id/pantryListView"
         android:layout_width="0dp"
@@ -23,7 +32,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pantryHeader" />
+        app:layout_constraintTop_toBottomOf="@+id/pantryHeader" >
+
+    </android.widget.ListView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

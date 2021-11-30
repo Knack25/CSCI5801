@@ -7,7 +7,6 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,8 +14,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WFD">
-        <activity android:name=".Shopping"></activity>
-        <activity android:name=".pantry.Pantry"></activity>
+        <activity
+            android:name=".recipe.RecipeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".pantry.Add_Ingredient_Popup"
+            android:exported="false" />
+        <activity android:name=".Shopping" />
+        <activity android:name=".pantry.Pantry" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -28,7 +33,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CameraActivity"></activity>
+        <activity android:name=".CameraActivity" />
     </application>
 
 </manifest>

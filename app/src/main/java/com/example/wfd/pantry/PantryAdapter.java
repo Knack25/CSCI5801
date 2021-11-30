@@ -66,10 +66,18 @@ public class PantryAdapter extends BaseAdapter implements ListAdapter {
             ingredientName.setText(list.get(position).getName());
 
             TextView amountOfIngredient = (TextView)view.findViewById(R.id.amountOfIngredient);
-            amountOfIngredient.setText((int) list.get(position).getAmmount());
+
+            amountOfIngredient.setText(String.valueOf(list.get(position).getAmmount()));
+
 
             TextView amountType = (TextView) view.findViewById(R.id.pantryAmountType);
-            amountType.setText(list.get(position).getAmmount_type());
+
+            if (list.get(position).getAmmount() > 1){
+                amountType.setText(list.get(position).getAmmount_type() + "S");
+            }else{
+                amountType.setText(list.get(position).getAmmount_type());
+            }
+
 
 
 

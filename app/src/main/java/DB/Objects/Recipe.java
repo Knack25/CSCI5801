@@ -9,6 +9,15 @@ public class Recipe {
     private String description;
     private String steps;
 
+        public Recipe(ArrayList<Ingredient> ingredients, String name, String description, String steps) {
+            this.ingredients = ingredients;
+            this.name = name;
+            this.description = description;
+            this.steps = steps;
+        }
+
+    public Recipe() {
+    }
 
     public String getName() {
         return name;

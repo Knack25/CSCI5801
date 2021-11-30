@@ -1,22 +1,22 @@
 package com.example.wfd;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.example.wfd.pantry.Pantry;
-import com.example.wfd.ui.main.SectionsPagerAdapter;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.wfd.databinding.ActivityMainBinding;
+import com.example.wfd.pantry.Pantry;
+import com.example.wfd.recipe.RecipeActivity;
+import com.example.wfd.ui.main.SectionsPagerAdapter;
 
 import DB.DBHandler;
+import DB.Objects.Recipe;
 import io.realm.mongodb.App;
 
 
@@ -58,62 +58,6 @@ public class MainActivity extends AppCompatActivity {
 
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
 
-/*
-        Realm.init(this);
-        String appID = "wfd-ppxod";
-        app = new App(new AppConfiguration.Builder(appID).build());
-
-        Credentials emailPasswordCredientals = Credentials.emailPassword(
-                "nathangschneider@gmail.com", "Test123");
-
-
-        app.loginAsync(emailPasswordCredientals, it -> {
-            if (it.isSuccess()) {
-                Log.v("AUTH", "Successfully authenticated using an email and password");
-                Log.v("AUTH", "Logged in user ID: " + app.currentUser().getId());
-                user.set(app.currentUser());
-                Log.d("DEBUG", "User ID " + user.get().getId());
-                success.set(true);
-            } else {
-                Log.e("AUTH", it.getError().toString());
-                success.set(false);
-            }
-        });
-
-        if (!success.get()) {
-            //TODO:  Redirect to login page
-        }
-
-        SyncConfiguration config = new SyncConfiguration.Builder(app.currentUser(), app.currentUser().getId())
-                .allowQueriesOnUiThread(true)
-                .allowWritesOnUiThread(true)
-                .build();
-
-        Realm.getInstanceAsync(config, new Realm.Callback() {
-            @Override
-            public void onSuccess(Realm realm) {
-                Log.v(
-                        "EXAMPLE",
-                        "Successfully opened a realm with reads and writes allowed on the UI thread."
-                );
-
-                realm.executeTransaction(r -> {
-                    Ingredient testingredient = r.createObject(Ingredient.class,new ObjectId());
-                    testingredient.setName("Flour");
-                    testingredient.setUpc(1345546754);
-                    testingredient.setAmmount(10);
-                    testingredient.setAmmount_type("lbs");
-                    r.insert(testingredient);
-                });
-
-                RealmResults<Ingredient> ingredients = realm.where(Ingredient.class).findAll();
-
-                Log.d("DEBUG", ingredients.toString());
-                realm.close();
-                success.set(true);
-            }
-        });
-*/
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -122,13 +66,9 @@ public class MainActivity extends AppCompatActivity {
         //..get the Recipes button
         ImageButton btnRecipes = findViewById(R.id.btnRecipes);
         //..set what happens when the user clicks on Recipes - will do more things when things are coded
-        btnRecipes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i(TAG, "This shows Recipes.");
-                Toast.makeText(getApplicationContext(), "Recipes", Toast.LENGTH_SHORT)
-                        .show();
-            }
+        btnRecipes.setOnClickListener(v -> {
+            Intent intent = new Intent(this, RecipeActivity.class);
+            startActivity(intent);
         });
 
 
