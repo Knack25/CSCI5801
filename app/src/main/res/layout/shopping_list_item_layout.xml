@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/constToMake"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:text="To make:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/recipeText"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
+        android:layout_marginStart="64dp"
+        android:text="Recipe name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="@+id/constToMake"
+        app:layout_constraintStart_toEndOf="@+id/constToMake"
+        app:layout_constraintTop_toTopOf="@+id/constToMake"
+        app:layout_constraintVertical_bias="0.562" />
+
+    <TextView
+        android:id="@+id/constYouWillNeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="you'll need:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constToMake" />
+
+    <TextView
+        android:id="@+id/shopIngredientOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:text="Ingredient 1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/constYouWillNeed"
+        app:layout_constraintTop_toBottomOf="@+id/constYouWillNeed" />
+
+    <TextView
+        android:id="@+id/shopIngredientTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ingredient 2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/shopIngredientOne"
+        app:layout_constraintStart_toStartOf="@+id/shopIngredientOne"
+        app:layout_constraintTop_toBottomOf="@+id/shopIngredientOne" />
+
+    <TextView
+        android:id="@+id/shopIngredientThree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ingredient 3"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/shopIngredientTwo"
+        app:layout_constraintStart_toStartOf="@+id/shopIngredientTwo"
+        app:layout_constraintTop_toBottomOf="@+id/shopIngredientTwo" />
+
+    <TextView
+        android:id="@+id/shopAmountOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="amount 1"
+        app:layout_constraintStart_toEndOf="@+id/shopIngredientOne"
+        app:layout_constraintTop_toTopOf="@+id/shopIngredientOne" />
+
+    <TextView
+        android:id="@+id/shopAmountTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="4dp"
+        android:text="amount 2"
+        app:layout_constraintStart_toEndOf="@+id/shopIngredientTwo"
+        app:layout_constraintTop_toBottomOf="@+id/shopAmountOne" />
+
+    <TextView
+        android:id="@+id/shopAmountThree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="amount 3"
+        app:layout_constraintStart_toEndOf="@+id/shopIngredientThree"
+        app:layout_constraintTop_toBottomOf="@+id/shopAmountTwo" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
