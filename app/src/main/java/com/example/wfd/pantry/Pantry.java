@@ -11,6 +11,8 @@ import com.example.wfd.R;
 
 import java.util.ArrayList;
 
+import DB.Objects.Ingredient;
+
 public class Pantry extends AppCompatActivity {
 
     @Override
@@ -18,12 +20,11 @@ public class Pantry extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantry);
 
-        ArrayList<String> dbList = new ArrayList<>();
+        ArrayList<Ingredient> ingredientList = new ArrayList<>();
 
-        dbList.add("Entry one");
-        dbList.add("Entry two");
 
-        PantryAdapter pantryAdapter = new PantryAdapter(dbList, this);
+
+        PantryAdapter pantryAdapter = new PantryAdapter(ingredientList, this);
 
         ListView pantryListView = (ListView) findViewById(R.id.pantryListView);
         pantryListView.setAdapter(pantryAdapter);

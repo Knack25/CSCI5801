@@ -22,7 +22,17 @@
         android:layout_height="wrap_content"
         android:text="amount"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.878"
+        app:layout_constraintHorizontal_bias="0.426"
         app:layout_constraintStart_toEndOf="@+id/ingredientName"
         app:layout_constraintTop_toTopOf="@+id/ingredientName" />
+
+    <TextView
+        android:id="@+id/pantryAmountType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="amt type"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/amountOfIngredient"
+        app:layout_constraintTop_toTopOf="@+id/amountOfIngredient" />
 </androidx.constraintlayout.widget.ConstraintLayout>

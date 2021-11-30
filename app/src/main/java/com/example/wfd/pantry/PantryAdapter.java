@@ -24,16 +24,16 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.ArrayList;
 
-
+import DB.Objects.Ingredient;
 
 
 public class PantryAdapter extends BaseAdapter implements ListAdapter {
-        private ArrayList<String> list = new ArrayList<String>();
+        private ArrayList<Ingredient> list = new ArrayList<Ingredient>();
         private Context context;
 
 
 
-        public PantryAdapter(ArrayList<String> list, Context context) {
+        public PantryAdapter(ArrayList<Ingredient> list, Context context) {
             this.list = list;
             this.context = context;
         }
@@ -63,10 +63,13 @@ public class PantryAdapter extends BaseAdapter implements ListAdapter {
 
             //Handle TextView and display string from your list
             TextView ingredientName = (TextView)view.findViewById(R.id.ingredientName);
-            ingredientName.setText(list.get(position).toString());      //list.get(position) returns the object in the array at that 'position'
+            ingredientName.setText(list.get(position).getName());
 
             TextView amountOfIngredient = (TextView)view.findViewById(R.id.amountOfIngredient);
-            //set amount of ingredients here
+            amountOfIngredient.setText((int) list.get(position).getAmmount());
+
+            TextView amountType = (TextView) view.findViewById(R.id.pantryAmountType);
+            amountType.setText(list.get(position).getAmmount_type());
 
 
 
