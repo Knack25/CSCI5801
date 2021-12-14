@@ -25,6 +25,7 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.wfd.pantry.Add_Ingredient_Popup;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.mlkit.vision.common.InputImage;
 
@@ -42,17 +43,32 @@ public class CameraActivity extends AppCompatActivity {
     Executor executor;
     private long mLastAnalysisResultTime;
     BarcodeScanner barcodeScanner;
-    TextView rawUPC;
+   // TextView rawUPC;
     PreviewView view_finder;
     TextView fpsCounter;
+    Intent intent;
+    String ingName;
+    String ingAmount;
+    String ingType;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
-         rawUPC = findViewById(R.id.upcRawText);
+        // rawUPC = findViewById(R.id.upcRawText);
          fpsCounter = findViewById(R.id.fpsText);
+
+
+         Intent intentTemp = getIntent();
+          ingName = intentTemp.getStringExtra("NAME");
+          ingAmount = intentTemp.getStringExtra("AMOUNT");
+          ingType = intentTemp.getStringExtra("TYPE");
+         intent = new Intent(this, Add_Ingredient_Popup.class);
+         intent.putExtra("TYPE", ingType);
+         intent.putExtra("AMOUNT", ingAmount);
+         intent.putExtra("NAME", ingName);
+
         if(checkPermission()){
             startCamera();
         }
@@ -136,7 +152,15 @@ public class CameraActivity extends AppCompatActivity {
             int rotationDegrees = image.getImageInfo().getRotationDegrees();
 
 
-              barcodeScanner.scanBarcodes(InputImage.fromMediaImage(image.getImage(), rotationDegrees)); //tries to scan for barcodes every frame
+           String bcode = barcodeScanner.scanBarcodes(InputImage.fromMediaImage(image.getImage(), rotationDegrees));
+            if(bcode != "Fail"){
+                intent.putExtra("UPC", bcode);
+                startActivity(intent);
+            }
+
+            //tries to scan for barcodes every frame
+
+
 
 
             Log.d("DEBUG", "img Analysis Block");      //for debugging
@@ -164,6 +188,12 @@ public class CameraActivity extends AppCompatActivity {
             mLastAnalysisResultTime = SystemClock.elapsedRealtime();
             image.close();
         });
+        if( barcodeScanner.rawValue != null) {
+            Log.d("SUCCESS", "SUCCESS!!");
+            intent = new Intent(this, Add_Ingredient_Popup.class);
+            intent.putExtra("UPC", barcodeScanner.rawValue);
+            startActivity(intent);
+        }
 
         cameraProvider.unbindAll();
         Camera camera = cameraProvider.bindToLifecycle((LifecycleOwner)this,

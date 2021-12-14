@@ -50,6 +50,7 @@
         android:layout_height="wrap_content"
         android:text="Add"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.525"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newingredientUPC" />
 
@@ -57,12 +58,13 @@
         android:id="@+id/newingredientUPC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text="UPC"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.21"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newingredienttype" />
 
@@ -75,5 +77,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newingredientamount"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/pantryCameraBtn"
+        android:layout_width="51dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#00E75AFF"
+        android:src="@android:drawable/ic_menu_camera"
+        app:layout_constraintBottom_toBottomOf="@+id/newingredientUPC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/newingredientUPC"
+        app:layout_constraintTop_toTopOf="@+id/newingredientUPC"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:src="@android:drawable/ic_menu_camera"
+        tools:srcCompat="@android:drawable/ic_menu_camera"
+        app:tint="@color/purple_500" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

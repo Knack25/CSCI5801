@@ -1,11 +1,17 @@
 package com.example.wfd;
 
+
+
 import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.view.PreviewView;
 
+import com.example.wfd.pantry.Add_Ingredient_Popup;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.mlkit.vision.barcode.Barcode;
@@ -19,13 +25,20 @@ public class BarcodeScanner extends CameraActivity {
 
     String rawValue;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        rawValue = null;
+
+    }
+
+
+
+
 
 
      String scanBarcodes(InputImage image) {
-
-         rawValue = null; //set to null initially at beginning of every scan
-         // [START set_detector_options]
-
          BarcodeScannerOptions options =
                 new BarcodeScannerOptions.Builder()
                         .setBarcodeFormats(
@@ -33,7 +46,6 @@ public class BarcodeScanner extends CameraActivity {
                                 Barcode.FORMAT_UPC_E
                         )
                         .build();
-
         com.google.mlkit.vision.barcode.BarcodeScanner scanner = BarcodeScanning.getClient();
 
         Task<List<Barcode>> result = scanner.process(image)
@@ -42,21 +54,10 @@ public class BarcodeScanner extends CameraActivity {
                     // [START_EXCLUDE]
                     // [START get_barcodes]
                     for (Barcode barcode: barcodes) {
-
                         rawValue = barcode.getRawValue();   //on successfully reading a barcode, we get the raw value (UPC value for now).
-                        if(rawValue != null){
-                            Intent intent = new Intent(this, MainActivity.class);
-                            intent.putExtra("UPC", rawValue);
-                            startActivity(intent);
-                        }
-
-
-//                        System.out.println("raw value = " + rawValue);  //debugging line
-
-
-
-
+                        Log.d("BarcodeDEBUG", "raw value scanned");
                     }
+
                     // [END get_barcodes]
                     // [END_EXCLUDE]
                 })
@@ -68,8 +69,9 @@ public class BarcodeScanner extends CameraActivity {
                     }
                 });
 
-
-            return rawValue;       //returns null on failure, a UPC on success.
+            if(rawValue != null) return rawValue;
+            else return "Fail";
+              //returns null on failure, a UPC on success.
 
     }
 
